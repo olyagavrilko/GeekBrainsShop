@@ -30,4 +30,12 @@ class CommonRequestFactory {
             queue: sessionQueue,
             baseURL: baseURL)
     }
+    
+    func makeCatalogRequestFactory() -> CatalogRequestFactory {
+        CatalogRequestFactory(
+            errorParser: errorParser,
+            sessionManager: commonSession,
+            queue: sessionQueue,
+            baseURL: baseURL)
+    }
 }

@@ -21,16 +21,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         
-        let authRequestFactory = requestFactory.makeAuthRequestFactory()
-        authRequestFactory.makeLoginRequest(username: "", password: "mypassword") { response in
-            switch response.result {
-            case .success(let login):
-                print(login)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        
+//        let authRequestFactory = requestFactory.makeAuthRequestFactory()
+//
+//        authRequestFactory.makeLoginRequest(username: "", password: "mypassword") { response in
+//            switch response.result {
+//            case .success(let login):
+//                print(login)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
 //        authRequestFactory.makeLogoutRequest(userID: 123) { response in
 //            switch response.result {
 //            case .success(let response):

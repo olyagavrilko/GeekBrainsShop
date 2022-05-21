@@ -21,14 +21,6 @@ protocol AbstractRequestFactory {
 
 extension AbstractRequestFactory {
     
-    var sessionManager: Session {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpShouldSetCookies = false
-        configuration.headers = .default
-        let manager = Session(configuration: configuration)
-        return manager
-    }
-    
     @discardableResult
     public func makeRequest<T: Decodable>(
         requestRouter: URLRequestConvertible,
