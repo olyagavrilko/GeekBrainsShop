@@ -50,7 +50,7 @@ extension AuthRequestFactory {
         
         let baseURL: URL
         let method: HTTPMethod = .get
-        let path: String = "login.json"
+        let path: String = "login"
         let login: String
         let password: String
         
@@ -66,12 +66,12 @@ extension AuthRequestFactory {
         
         let baseURL: URL
         let method: HTTPMethod = .get
-        let path: String = "logout.json"
+        let path: String = "logout"
         let userID: Int
         
         var parameters: Parameters? {
             return [
-                "id_user": userID
+                "userID": userID
             ]
         }
     }
