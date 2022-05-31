@@ -23,23 +23,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let authRequestFactory = requestFactory.makeAuthRequestFactory()
 
-//        authRequestFactory.makeLoginRequest(username: "some", password: "mypassword") { response in
-//            switch response.result {
-//            case .success(let login):
-//                print(login)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//
-        authRequestFactory.makeLogoutRequest(userID: 123) { response in
+        authRequestFactory.makeLoginRequest(username: "some", password: "mypassword") { response in
             switch response.result {
-            case .success(let response):
-                print(response)
+            case .success(let login):
+                print(login)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+
+//        authRequestFactory.makeLogoutRequest(userID: 123) { response in
+//            switch response.result {
+//            case .success(let response):
+//                print(response)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }

@@ -10,7 +10,7 @@ import Alamofire
 class CommonRequestFactory {
     
     let baseURL = URL(
-        string: "http://127.0.0.1:8080/")!
+        string: "https://gb-shop-server.herokuapp.com/")!
     let sessionQueue = DispatchQueue.global(qos: .utility)
     
     lazy var commonSession: Session = {
