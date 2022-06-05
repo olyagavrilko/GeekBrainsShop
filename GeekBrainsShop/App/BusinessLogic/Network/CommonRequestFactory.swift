@@ -10,7 +10,7 @@ import Alamofire
 class CommonRequestFactory {
     
     let baseURL = URL(
-        string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+        string: "https://gb-shop-server.herokuapp.com/")!
     let sessionQueue = DispatchQueue.global(qos: .utility)
     
     lazy var commonSession: Session = {
