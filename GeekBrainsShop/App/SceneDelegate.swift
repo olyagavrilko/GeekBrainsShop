@@ -22,7 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         let authRequestFactory = requestFactory.makeAuthRequestFactory()
-
+        let reviewRequestFactory = requestFactory.makeReviewRequestFactory()
+// MARK: - Login
         authRequestFactory.makeLoginRequest(username: "some", password: "mypassword") { response in
             switch response.result {
             case .success(let login):
@@ -31,15 +32,46 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print(error.localizedDescription)
             }
         }
+        
+// MARK: - Logout
+        authRequestFactory.makeLogoutRequest(userID: 123) { response in
+            switch response.result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+// MARK: - Reviews
+        reviewRequestFactory.makeReviewsRequest(productID: 2) { response in
+            switch response.result {
+            case .success(let review):
+                print(review)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+// MARK: - Add review
+        reviewRequestFactory.makeAddReviewRequest(userID: 2, text: "Review") { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
 
-//        authRequestFactory.makeLogoutRequest(userID: 123) { response in
-//            switch response.result {
-//            case .success(let response):
-//                print(response)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
+// MARK: - Remove review
+        reviewRequestFactory.makeRemoveReviewRequest(reviewID: 12) { respons in
+            switch respons.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }

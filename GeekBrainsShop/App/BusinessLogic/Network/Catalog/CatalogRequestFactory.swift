@@ -33,8 +33,8 @@ class CatalogRequestFactory: AbstractCatalogRequestFactory {
     ) {
         let requestRouter = ProductListRequestRouter(
             baseURL: baseURL,
-            pageNumber: 1,
-            categoryID: 1)
+            pageNumber: pageNumber,
+            categoryID: categoryID)
         makeRequest(requestRouter: requestRouter, completionHandler: completionHandler)
     }
 }

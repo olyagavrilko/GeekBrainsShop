@@ -38,4 +38,11 @@ class CommonRequestFactory {
             queue: sessionQueue,
             baseURL: baseURL)
     }
+    
+    func makeReviewRequestFactory() -> ReviewRequestFactory {
+        ReviewRequestFactory(
+            errorParser: errorParser,
+            sessionManager: commonSession,
+            baseURL: baseURL)
+    }
 }
