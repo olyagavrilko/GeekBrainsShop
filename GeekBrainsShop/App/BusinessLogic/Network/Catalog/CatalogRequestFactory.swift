@@ -29,7 +29,7 @@ class CatalogRequestFactory: AbstractCatalogRequestFactory {
     func makeProductListRequest(
         pageNumber: Int,
         categoryID: Int,
-        completionHandler: @escaping (AFDataResponse<[Product]>) -> Void
+        completionHandler: @escaping (AFDataResponse<ProductListResult>) -> Void
     ) {
         let requestRouter = ProductListRequestRouter(
             baseURL: baseURL,
@@ -45,14 +45,14 @@ extension CatalogRequestFactory {
         
         let baseURL: URL
         let method: HTTPMethod = .get
-        let path = "catalogData.json"
+        let path = "catalog"
         let pageNumber: Int
         let categoryID: Int
         
         var parameters: Parameters? {
             [
-                "page_number": pageNumber,
-                "id_category": categoryID
+                "pageNumber": pageNumber,
+                "categoryID": categoryID
             ]
         }
     }

@@ -9,8 +9,14 @@ import Alamofire
 
 class CommonRequestFactory {
     
+    enum Consts {
+        static let remoteURL = "https://gb-shop-server.herokuapp.com/"
+        static let localhostURL = "http://127.0.0.1:8080"
+    }
+    
     let baseURL = URL(
-        string: "https://gb-shop-server.herokuapp.com/")!
+        string: Consts.remoteURL)!
+
     let sessionQueue = DispatchQueue.global(qos: .utility)
     
     lazy var commonSession: Session = {
@@ -41,6 +47,13 @@ class CommonRequestFactory {
     
     func makeReviewRequestFactory() -> ReviewRequestFactory {
         ReviewRequestFactory(
+            errorParser: errorParser,
+            sessionManager: commonSession,
+            baseURL: baseURL)
+    }
+    
+    func makeCartRequestFactory() -> CartRequestFactory {
+        CartRequestFactory(
             errorParser: errorParser,
             sessionManager: commonSession,
             baseURL: baseURL)
