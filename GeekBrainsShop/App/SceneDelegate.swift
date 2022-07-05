@@ -18,23 +18,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = ViewController()
+        window?.rootViewController = CartViewController()
         window?.makeKeyAndVisible()
         
         let authRequestFactory = requestFactory.makeAuthRequestFactory()
+        let catalogRequestFactory = requestFactory.makeCatalogRequestFactory()
         let reviewRequestFactory = requestFactory.makeReviewRequestFactory()
+        let cartRequestFactory = requestFactory.makeCartRequestFactory()
 // MARK: - Login
-        authRequestFactory.makeLoginRequest(username: "some", password: "mypassword") { response in
-            switch response.result {
-            case .success(let login):
-                print(login)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        
+//        authRequestFactory.makeLoginRequest(username: "some", password: "mypassword") { response in
+//            switch response.result {
+//            case .success(let login):
+//                print(login)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+
 // MARK: - Logout
-        authRequestFactory.makeLogoutRequest(userID: 123) { response in
+//        authRequestFactory.makeLogoutRequest(userID: 123) { response in
+//            switch response.result {
+//            case .success(let response):
+//                print(response)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+        
+// MARK: - Product List
+        catalogRequestFactory.makeProductListRequest(pageNumber: 1, categoryID: 2) { response in
             switch response.result {
             case .success(let response):
                 print(response)
@@ -43,35 +55,68 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         
-// MARK: - Reviews
-        reviewRequestFactory.makeReviewsRequest(productID: 2) { response in
+// MARK: - Add to cart
+        cartRequestFactory.makeAddToCartRequest(productID: 123, quantity: 1) { response in
             switch response.result {
-            case .success(let review):
-                print(review)
+            case .success(let response):
+                print(response)
+                makePurchase()
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
         
-// MARK: - Add review
-        reviewRequestFactory.makeAddReviewRequest(userID: 2, text: "Review") { response in
+// MARK: - Delete from cart
+        cartRequestFactory.makeDeleteFromCartRequest(productID: 123) { response in
             switch response.result {
-            case .success(let result):
-                print(result)
+            case .success(let response):
+                print(response)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
+//
+// MARK: - Make purchase
+        func makePurchase() {
+            cartRequestFactory.makeBuyRequest() { response in
+                switch response.result {
+                case .success(let response):
+                    print(response)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+// MARK: - Reviews
+//        reviewRequestFactory.makeReviewsRequest(productID: 2) { response in
+//            switch response.result {
+//            case .success(let review):
+//                print(review)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+
+// MARK: - Add review
+//        reviewRequestFactory.makeAddReviewRequest(userID: 2, text: "Review") { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
 
 // MARK: - Remove review
-        reviewRequestFactory.makeRemoveReviewRequest(reviewID: 12) { respons in
-            switch respons.result {
-            case .success(let result):
-                print(result)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+//        reviewRequestFactory.makeRemoveReviewRequest(reviewID: 12) { respons in
+//            switch respons.result {
+//            case .success(let result):
+//                print(result)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }

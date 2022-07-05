@@ -80,7 +80,7 @@ extension ReviewRequestFactory {
     struct AddReviewRequestRouter: RequestRouter {
         let baseURL: URL
         let method: HTTPMethod = .post
-        let path: String = "add-review"
+        let path: String = "review"
         let userID: Int
         let text: String
         
@@ -95,7 +95,7 @@ extension ReviewRequestFactory {
     struct RemoveReviewRequestRouter: RequestRouter {
         let baseURL: URL
         let method: HTTPMethod = .delete
-        let path: String = "remove-review"
+        let path: String = "review"
         let reviewID: Int
         
         var parameters: Parameters? {

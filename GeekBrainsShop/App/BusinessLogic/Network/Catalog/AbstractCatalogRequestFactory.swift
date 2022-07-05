@@ -11,5 +11,5 @@ protocol AbstractCatalogRequestFactory: AbstractRequestFactory {
     func makeProductListRequest(
         pageNumber: Int,
         categoryID: Int,
-        completionHandler: @escaping (AFDataResponse<[Product]>) -> Void)
+        completionHandler: @escaping (AFDataResponse<ProductListResult>) -> Void)
 }
